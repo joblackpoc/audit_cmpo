@@ -1,12 +1,8 @@
-from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
-from PIL import Image
-from django.dispatch import receiver
-from django.db.models.signals import post_save
 
 class Profile(models.Model):
-        sectionlist = (
+    sectionlist = (
         ('1','พัฒนายุทธศาสตร์สาธารณสุข'),
         ('2','บริหารทั่วไป'),
         ('3','ทันตสาธารณสุข'),
@@ -22,12 +18,8 @@ class Profile(models.Model):
         ('13','แพทย์แผนไทยและการแพทย์ทางเลือก'),
         ('14','สุขศึกษาประชาสัมพันธ์'),
         ('15','None'),
-        )
-        user = models.OneToOneField(User, on_delete=models.CASCADE)
-        sectionlist = models.CharField(max_length=100, choices=sectionlist, default=1)
-        user_phone = models.CharField(max_length=50, blank=True, null=True)
-        image = models.ImageField(default='default.jpg', upload_to='profile_pics')
-
-        def __str__(self):
-            return self.user.username+' - '+self.user.sectionlist+' - '+self.user.userphone
-    
+    )
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    sectionlist = models.CharField(max_length=100, choices=sectionlist, default=1)
+    user_phone = models.CharField(max_length=50, blank=True, null=True)
+    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
