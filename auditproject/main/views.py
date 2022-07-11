@@ -20,3 +20,4 @@ def registeruser(request):
         'form':form,
     }
     return render(request, 'main/register.html',context)
+
