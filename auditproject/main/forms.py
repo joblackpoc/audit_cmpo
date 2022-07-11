@@ -34,7 +34,7 @@ class DocumentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields('content').required = False
-    
+        
     class Meta:
         model = Document
         fields = ('title','content','image','uploadfile')
