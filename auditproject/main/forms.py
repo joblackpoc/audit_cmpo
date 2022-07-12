@@ -1,10 +1,7 @@
-from dataclasses import field
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django_ckeditor_5.widgets import CKEditor5Widget
-from matplotlib import widgets
-from .models import *
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from .models import  Document
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField(required=True,widget=forms.EmailInput(attrs={'class':'focus:outline-none','placeholder':'demo@gmail.com'}))
@@ -29,17 +26,21 @@ class UserRegisterForm(UserCreationForm):
             user.save()
         return user
 
+class UserUpdateForm(UserChangeForm):
+    email = forms.EmailField()
+    
+    class Meta:
+        model = User
+        fields =('first_name','last_name','email')
+        labels = {
+            'first_name':'ชื่อจริง','last_name':'นามสกุล','email':'อีเมล์ที่สามารถติดต่อได้',
+        }
+
 class DocumentForm(forms.ModelForm):
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields('content').required = False
-        
     class Meta:
         model = Document
-        fields = ('title','content','image','uploadfile')
-        widgets = {
-            'content': CKEditor5Widget(
-                attrs={'class':'django_ckeditor_5'}, config_name='content'
-            )
+        fields = ('title','content','media','image','uploadfile')
+        labels = {
+            'title':'ชื่อเรื่อง','content':'เนื้อหา','media':'media','image':'ภาพประกอบชื่อเรื่อง','uploadfile':'แนบไฟล์ pdf,docx,xlsx,zip,rar'
         }

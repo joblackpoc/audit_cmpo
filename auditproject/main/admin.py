@@ -1,4 +1,7 @@
+from atexit import register
 from django.contrib import admin
-from main.models import Profile
+from .models import Document, Sectionlist
 # Register your models here.
-admin.site.register(Profile)
+
+admin.site.register(Document)
+admin.site.register(Sectionlist)

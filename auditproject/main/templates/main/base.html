@@ -65,11 +65,10 @@
 <!--Login show menu start-->
 					{% if user.is_authenticated %}
 					<li class="nav-item">
-					    <a href="{% url 'home' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user m-r-5"></i></span><span class="pcoded-mtext">Profile</span></a>
+					    <a href="{% url 'profile' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">แก้ไขบัญชี</span></a>
 					</li>
-
 					<li class="nav-item">
-					    <a href="{% url 'home' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">บันทึกข้อมูล</span></a>
+					    <a href="{% url 'document' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">บันทึกข้อมูล</span></a>
 					</li>
 					<li class="nav-item">
 					    <a href="{% url 'logout' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-log-out m-r-5"></i></span><span class="pcoded-mtext"> Logout</span></a>

@@ -1,23 +1,18 @@
-import datetime
-from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from PIL import Image
-from django_ckeditor_5.fields import CKEditor5Field
-class Sectionlist(models.Model):
-    section_name = models.CharField(max_length=255)
-class Profile(models.Model):
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    sectionlist = models.ForeignKey(Sectionlist, on_delete=models.CASCADE)
-    user_phone = models.CharField(max_length=50, blank=True, null=True)
-    image = models.ImageField(default='default.jpg', upload_to='profile_pics')
+class Sectionlist(models.Model):
+    
+    section_name = models.CharField(max_length=255)
 
 class Document(models.Model):
 
     title = models.CharField(max_length=150)
-    content = CKEditor5Field('Text', config_name='extends')
+    content = RichTextField(blank=True, null=True)
+    media = RichTextUploadingField(blank=True, null=True)
     image = models.ImageField(default='document.jpg', upload_to='document_image')
     uploadfile = models.FileField('Document', upload_to='document_file')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
