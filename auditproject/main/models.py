@@ -25,4 +25,17 @@ class Document(models.Model):
         self.modified = timezone.now()
         return super(Document, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
+class Profile(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    section = models.ForeignKey(Sectionlist,default=1 ,on_delete=models.CASCADE)
+    phone = models.CharField(max_length=100,default='0812345678')
+    picture = models.ImageField(default='default.jpg',upload_to='profile_pictures')
+
+    def __str__(self):
+        return self.user.username
+
 
