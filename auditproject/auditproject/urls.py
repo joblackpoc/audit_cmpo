@@ -22,6 +22,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('main.urls')),
+    path('ckeditor/',include('ckeditor_uploader.urls')),
     path('login/',auth_view.LoginView.as_view(template_name='main/login.html'),name='login'),
     path('logout/', auth_view.LogoutView.as_view(template_name='main/logout.html'),name='logout'),
     path('password-reset/',auth_view.PasswordResetView.as_view(template_name='main/password_reset.html')
@@ -32,5 +33,6 @@ urlpatterns = [
         ,name='password_reset_confirm.html'),
     path('password-reset-complete/',auth_view.PasswordResetCompleteView.as_view(template_name='main/password_reset_complete.html')
         ,name='password_reset_complete'),
-    path('ckedit/', include('ckeditor_uploader.urls')),
+    
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+

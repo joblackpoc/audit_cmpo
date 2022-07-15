@@ -1,14 +1,19 @@
+import datetime
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-from .forms import UserRegisterForm, UserUpdateForm, DocumentForm
+from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm, DocumentForm
 from django.contrib.auth.models import User
 from .models import Document, Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
+from django.core.paginator import Paginator
 
 class home(ListView):
     model = Document
     template_name = 'main/home.html'
+    context_object_name = 'document'
+    paginate_by = 5
 
 def registeruser(request):
     if request.method == 'POST':
@@ -27,17 +32,23 @@ def registeruser(request):
 
 @login_required
 def profile(request):
-    profile_form = UserUpdateForm
     if request.method == 'POST':
-        profile_form = UserUpdateForm(request.POST, instance=request.user)
-        if profile_form.is_valid():
-            profile_form.save()
-            messages.success(request, 'บัญชีของคุณได้รับการปรับปรุงเรียบร้อย')
-            return redirect('profile')
-    context = {
-        'profile_form':profile_form
-    }
+      u_form = UserUpdateForm(request.POST, instance=request.user)
+      p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
 
+      if u_form.is_valid() and p_form.is_valid():
+        u_form.save()
+        p_form.save()
+        messages.success(request, f'Your accout has been Update')
+        return redirect('profile')
+    else:
+      u_form = UserUpdateForm(instance=request.user)
+      p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+      'u_form': u_form,
+      'p_form': p_form
+    }
     return render(request, 'main/profile.html', context)
 
 @login_required
