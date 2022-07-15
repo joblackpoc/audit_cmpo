@@ -1,9 +1,9 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
-from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
 class Sectionlist(models.Model):
@@ -20,9 +20,9 @@ class Document(models.Model):
     shortnote = models.CharField(max_length=150)
     content = RichTextUploadingField(blank=True, null=True)
     image = models.ImageField(default='document.png', upload_to='document_image')
-    uploadfile = models.FileField('Document', upload_to='document_file')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    create_date = models.DateTimeField(auto_now_add=())
+    uploadfile = models.FileField('Document',upload_to='document_file')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    create_date = models.DateTimeField(auto_now_add=(timezone.now))
     update_date = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):

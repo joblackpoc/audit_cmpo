@@ -125,11 +125,18 @@
                             </div>
                             <div class="card-footer bg-c-green">
                                 <div class="row align-items-center">
-                                    <div class="col-12">
-                                        <p class="text-white m-b-0">กลุ่มงานพัฒนายุทธศาสตร์สาธารณสุข</p>
-                                    </div>
+                                    
+                                    {% for item in document %}
+                                        <div class="col-12">
+                                            <h4 class="text-white m-b-0">{{item.section}}</h4>
+                                        </div class="col-12">
+                                        <div class="col-12">
+                                            <h4 class="text-white m-b-0">{{item.title}}</h4>
+                                        </div>
+                                    {% endfor %}
                                     <div class="col-3 text-right">
                                         <i class="feather icon-trending-up text-white f-16"></i>
+                                        <i class="feather icon-file-text text-white f-28"></i>
                                     </div>
                                 </div>
                             </div>

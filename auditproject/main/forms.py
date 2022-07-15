@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import  Document, Profile
-from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -28,7 +28,7 @@ class UserUpdateForm(UserChangeForm):
         labels = {
             'first_name':'ชื่อจริง'
             ,'last_name':'นามสกุล'
-            ,'email':'อีเมล์ที่สามารถติดต่อได้',
+            ,'email':'อีเมล์ที่สามารถติดต่อได้'
         }
 
 class ProfileUpdateForm(forms.ModelForm):
@@ -42,7 +42,9 @@ class ProfileUpdateForm(forms.ModelForm):
         }
 
 class DocumentForm(forms.ModelForm):
-    content = forms.CharField(required=False,widget=CKEditorWidget(attrs={'placeholder':'คำอธิบายเนื้อหาโดยละเอียด'}))
+    content = RichTextUploadingField()
+    image = forms.ImageField(required=False, label='ภาพหน้าปก')
+    shortnote = forms.CharField(required=False, label='อธิบายชื่อเรื่องอย่างย่อ')
     class Meta:
         model = Document
         fields = ('title','section','shortnote','content','image','uploadfile')
@@ -54,3 +56,4 @@ class DocumentForm(forms.ModelForm):
             ,'image':'ภาพหน้าปก'
             ,'uploadfile':'ไฟล์ประกอบสำหรับให้ดาวน์โหลด'
         }
+

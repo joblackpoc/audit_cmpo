@@ -1,9 +1,8 @@
 import datetime
-from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm, DocumentForm
 from django.contrib.auth.models import User
-from .models import Document, Profile
+from .models import Document, Profile, Sectionlist
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
@@ -53,17 +52,15 @@ def profile(request):
 
 @login_required
 def document_input(request):
-
-    form = DocumentForm
-    if request.method == 'POST':
-        form = DocumentForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect('home')
     
-    context = {
-        'form':form
-    }
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            fm = form.save(commit=False)
+            fm.user = request.user
+            fm.save()
+        return redirect('home')
+    else:
+        form = DocumentForm()
 
-    return render(request, 'main/document_input.html', context)
-
+    return render(request, 'main/document_input.html', {'form':form})
