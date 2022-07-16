@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .models import Document, Profile, Sectionlist
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView, UpdateView
 from django.core.paginator import Paginator
 
 class home(ListView):
@@ -64,3 +64,11 @@ def document_input(request):
         form = DocumentForm()
 
     return render(request, 'main/document_input.html', {'form':form})
+
+@login_required
+class UpdateDocumentView(UpdateView):
+    model = Document
+    template_name = 'main/document_update.html'
+    fields = ['section','title','shortnote','content','image','uploadfile']
+
+

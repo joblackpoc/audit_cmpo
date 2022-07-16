@@ -141,10 +141,10 @@
                                                         <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                                             <div class="card-body">
                                                                 <h5 class="text-c-blue">หัวข้อ:&nbsp;{{item.title}}</h5><br>
-
+                                                                <h5 class="tex-c-blue">คำอธิบายย่อ:&nbsp;{{item.shortnote}}</h5>
                                                                 <a href="{{item.uploadfile.url}}">
                                                                     <h5 class="text-c-blue">
-                                                                        ดาวน์โหลดไฟล์เนื้อหา:&nbsp;{{item.shortnote}}
+                                                                        ดาวน์โหลดไฟล์เนื้อหา:&nbsp;{{item.content|safe}}
                                                                     </h5>
                                                                 </a>
                                                                 
