@@ -1,8 +1,6 @@
-import datetime
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
+from django.urls import reverse
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -22,7 +20,7 @@ class Document(models.Model):
     image = models.ImageField(default='document.png', upload_to='document_image')
     uploadfile = models.FileField('Document',upload_to='document_file')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    create_date = models.DateTimeField(auto_now_add=(timezone.now))
+    create_date = models.DateTimeField(auto_now_add=())
     update_date = models.DateTimeField(default=timezone.now)
 
     def save(self, *args, **kwargs):
@@ -32,7 +30,10 @@ class Document(models.Model):
         return super(Document, self).save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return self.title +' - '+ str(self.user.first_name) +' - '+ str(self.user.last_name)
+
+    def get_absolute_url(self):  
+        return reverse('home')
 
 class Profile(models.Model):
 

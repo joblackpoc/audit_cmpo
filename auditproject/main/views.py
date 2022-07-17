@@ -2,7 +2,7 @@ import datetime
 from django.shortcuts import render, redirect
 from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm, DocumentForm
 from django.contrib.auth.models import User
-from .models import Document, Profile, Sectionlist
+from .models import Document, Profile
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, UpdateView, DetailView
@@ -65,15 +65,13 @@ def document_input(request):
 
     return render(request, 'main/document_input.html', {'form':form})
 
-@login_required
-class UpdateDocumentView(UpdateView):
-    model = Document
-    template_name = 'main/document_update.html'
-    fields = ['section','title','shortnote','content','image','uploadfile']
-
 class DocumentDetailView(DetailView):
     model = Document
     template_name = 'main/document_detail.html'
 
+class DocumentUpdateView(UpdateView):
+    model = Document
+    form_class = DocumentForm
+    template_name = 'main/document_update.html'
 
 
