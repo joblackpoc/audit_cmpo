@@ -20,8 +20,8 @@ class Document(models.Model):
     image = models.ImageField(default='document.png', upload_to='document_image')
     uploadfile = models.FileField('Document',upload_to='document_file')
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    create_date = models.DateTimeField(auto_now_add=())
-    update_date = models.DateTimeField(default=timezone.now)
+    create_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         if not self.id:

@@ -8,14 +8,13 @@
     {% else %}
       <title>ตรวจราชการ</title>
     {% endif %} 
-
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="" />
     <meta name="keywords" content="">
-	<meta name="author" content="ตรวจราชการ" />
+	<meta name="author" content="สำนักงานสาธารณสุขจังหวัดชุมพร" />
 	<!--icon fonts-->
 	<link rel="icon" href="{% static 'assets/css/iconfont.css' %}" type="image/x-icon">
 	<link rel="icon" href="{% static 'assets/css/iconfont.min.css' %}" type="image/x-icon">
@@ -42,7 +41,7 @@
 					<div class="main-menu-header">
 						<img class="img-radius" src="{% static 'assets/images/user/moph.PNG' %}" alt="User-Profile-Image">
 						<div class="user-details">
-							<div id="more-details"> รายงานตรวจราชการ <i class="fa fa-caret-down"></i></div>
+							<div id="more-details"> รายงานตรวจราชการ </div>
 						</div>
 					</div>
 					<div class="collapse" id="nav-user-link">
@@ -55,17 +54,16 @@
 				
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Navigation</label>
+					    <label></label>
 					</li>
 					<li class="nav-item">
 					    <a href="{% url 'home' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">HOME</span></a>
 					</li>
 
-
 <!--Login show menu start-->
 					{% if user.is_authenticated %}
 					<li class="nav-item">
-					    <a href="{% url 'profile' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">แก้ไขบัญชี</span></a>
+					    <a href="{% url 'profile' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user m-r-5"></i></span><span class="pcoded-mtext">แก้ไขบัญชี</span></a>
 					</li>
 					<li class="nav-item">
 					    <a href="{% url 'document' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">บันทึกข้อมูล</span></a>
@@ -78,7 +76,7 @@
 						<a href="{% url 'login' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-log-in m-r-5"></i></span><span class="pcoded-mtext"> ลงชื่อเข้าสู่ระบบ</span></a>
 					</li>
 					</li>
-						<a href="{% url 'register' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-settings m-r-5"></i></span><span class="pcoded-mtext"> สมัครเข้าใช้งานระบบ</span></a>
+						<a href="{% url 'register' %}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user m-r-5"></i></span><span class="pcoded-mtext"> สมัครเข้าใช้งานระบบ</span></a>
 					</li>
 					{% endif %}
 <!--Login show menu end-->

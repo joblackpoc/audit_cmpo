@@ -112,47 +112,28 @@
                 -->    
                     <div class="col-sm-12">
                         <div class="card">
-                            <div class="card-body">
-                                <div class="row align-items-center">
-                                    <div class="col-8">
-                                        <h4 class="text-c-green">ไตรมาส 3 ปี 2565</h4>
+                            <div class="card-header">
+                                <div class="card-body">
+                                    <div class="col-12">
+                                        <h4 class="text-c-green">รายงานตรวจราชการ ปี 2565</h4>
                                         <h6 class="text-muted m-b-0"></h6>
                                     </div>
-                                    <div class="col-4 text-right">
-                                        <i class="feather icon-file-text f-28"></i>
-                                    </div>
+                                    {% for item in document %}
+                                            
+                                        <div class="card-footer">
+                                            <h5 class="mb-0">{{item.title}}</h5>
+                                            <h5>&nbsp;{{item.shortnote}}</h5><br/>
+                                            <h5><a href=" {% url 'document-detail' item.pk %} ">คลิกดูรายละเอียดและดาวน์โหลดไฟล์</button></h5>
+                                        </div>
+                            
+                                    {% endfor %}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h5 class="mb-0 text-c-blue">คลิกรายการด้านล่างเพื่อดูคำอธิบายและดาวน์โหลดเนื้อหา</h5>
-                                            <hr>
-                                            
-                                            {% for item in document %}
-                                                <div class="accodion" id="accordionExample">
-                                                    <div class="card mb-0">
-                                                        <div class="card-header" id="headingTwo">
-                                                            <h5 class="collapsed text-c-blue" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="">
-                                                                กลุ่มงาน/งาน:&nbsp;{{item.section}}
-                                                            </h5><br>
-                                                        </div>
-                                                        <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                                            <div class="card-body">
-                                                                <h5 class="text-c-blue">หัวข้อ:&nbsp;{{item.title}}-&nbsp;โพสต์โดย-&nbsp;{{item.user.first_name}}&nbsp;{{item.user.last_name}}</h5><br>
-                                                                <h5 class="tex-c-blue">คำอธิบายย่อ:&nbsp;{{item.shortnote}}</h5>
-                                                                <a href="{% url 'document-detail' item.pk %}">
-                                                                    <h5 class="text-c-blue">
-                                                                        คลิกอ่านรายละเอียดที่นี่
-                                                                    </h5>
-                                                                </a>
-                                                                
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
+                                    
+                                            <h5 class="mb-0 text-c-blue"></h5>
+
                                             <div class="card-header">
                                             <!--Pagination start-->
                                             {% if is_paginated %}
@@ -178,9 +159,7 @@
                                             {% endif %} 
                                             <!--Pagination end-->
                                             </div>
-                                                
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -237,7 +216,7 @@
             </div>
         -->
             <!-- seo end -->
-
+            </div>
         </div>
         <!-- [ Main Content ] end -->
     </div>

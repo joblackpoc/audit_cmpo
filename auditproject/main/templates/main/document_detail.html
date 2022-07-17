@@ -10,7 +10,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10"> รายละเอียดข้อมูล</h5>
+                            <h5 class="m-b-10"> รายละเอียดข้อมูลรายงานตรวจราชการ</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="feather icon-home"></i></a></li>
@@ -30,14 +30,17 @@
                             <!-- Poc insert -->
                             <div class="card-header">
                                 <div class="row">
-                                    <legend class="border-bottom mb-4">รายละเอียดข้อมูลรายการตรวจราชการปี 2565</legend>
+                                    <legend class="">{{document.section}}</legend>
                                 </div>
                             </div>
                             <div class="card-body">
                                 <div class="card align-items-center">
-                                    <img src="{{document.image.url}}" alt="{{document.title}}" width="500px" ><br>
+                                    <img src="{{document.image.url}}" alt="{{document.title}}" width="330px" ><br>
                                 </div>
                                 <div class="card-body">
+                                    <div class="card-header">
+                                        {{document.title}}
+                                    </div>
                                     <div class="card-footer">
                                         {{document.shortnote}}
                                     </div>
@@ -48,17 +51,17 @@
                                         <a href="{{document.uploadfile.url}}">ดาวน์โหลดเอกสารที่นี่</a>
                                     </div>
                                     <div class="card-footer">
-                                        {{document.user.first_name}}&nbsp;-&nbsp;{{document.user.last_name}}
+                                        โพสต์โดย&nbsp;&nbsp;{{document.user.first_name}}&nbsp;&nbsp;{{document.user.last_name}}
                                     </div>
                                     <div class="card-footer">
                                         วันที่โพสต์&nbsp;{{document.create_date}}&nbsp;วันที่แก้ไข&nbsp;{{document.update_date}}
                                     </div>
+                                    <div class="card-footer">
+                                        <a href="{% url 'document-update' document.pk %}">
+                                            <button class="btn btn-primary" type="submit">แก้ไขข้อมูล</button>
+                                        </a> 
+                                    </div> 
                                 </div>
-                                <div class="card-footer">
-                                    <a href="{% url 'document-update' document.pk %}">
-                                        <button class="btn btn-primary" type="submit">แก้ไขข้อมูล</button>
-                                    </a> 
-                                </div> 
                             </div>
                             <!-- Poc insert -->
                     </div>
