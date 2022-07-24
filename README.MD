@@ -1,1 +1,23 @@
 # audit_cmpo
+asgiref==3.5.2
+beautifulsoup4==4.11.1
+crispy-bootstrap5==0.6
+Django==4.0.6
+django-ckeditor==6.4.2
+django-crispy-forms==1.14.0
+django-filter==22.1
+django-js-asset==2.0.0
+django-widget-tweaks==1.4.12
+gunicorn==20.1.0
+humanize==4.2.3
+mysqlclient==2.1.1
+numpy==1.23.0
+pandas==1.4.3
+Pillow==9.2.0
+python-dateutil==2.8.2
+pytz==2022.1
+six==1.16.0
+soupsieve==2.3.2.post1
+sqlparse==0.4.2
+tzdata==2022.1
+whitenoise==6.2.0
